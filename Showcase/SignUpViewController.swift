@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
     
@@ -61,12 +61,8 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     // Store user in Cloud Firestore
-                    let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["username": username, "uid": authResult!.user.uid]) { (error) in
-                        if error != nil {
-                            self.displayError("Error saving user data")
-                        }
-                    }
+                    let ref = Database.database().reference()
+                    ref.child("users").child(authResult!.user.uid).setValue(["username": username])
                     self.transitionToHome()
                 }
             }
@@ -96,8 +92,8 @@ class SignUpViewController: UIViewController {
     }
     
     func transitionToHome(){
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: "HomeController") as? HomeViewController
-        view.window?.rootViewController = homeViewController
+        let tabBarController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
+        view.window?.rootViewController = tabBarController
     }
     
 }

@@ -75,12 +75,7 @@ class LogInViewController: UIViewController {
     }
     
     func transitionToHome(){
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: "HomeController") as? HomeViewController
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
+        let tabBarController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
+        view.window?.rootViewController = tabBarController
     }
-    
-    
 }
-
-
