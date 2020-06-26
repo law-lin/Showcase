@@ -34,20 +34,23 @@ class ProfileViewController: UITableViewController {
     
     func loadDataFromDatabase() {
         let userID = Auth.auth().currentUser?.uid
-        ref.child("cards").queryOrdered(byChild: "userID!").queryEqual(toValue: userID!).observe(.childAdded, with: { (snapshot) in
-            if snapshot.childrenCount > 0{
+        ref.child("cards").child(userID!).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
+            if let dict = snapshot.children.allObjects as? [DataSnapshot]{
                 self.cards.removeAll()
-                for result in snapshot.children.allObjects as! [DataSnapshot]{
+                for result in dict {
+                    print(dict)
                     let results = result.value as? [String : AnyObject]
-                    let cardTitle = results?["cardTitle"]
-                    let cardDescription = results?["cardDescription"]
-                    let card = Card(cardTitle: cardTitle as! String?, cardDescription: cardDescription as! String?)
+                    print(results!)
+                    let cardTitle = results?["cardTitle"] as? String
+                    let cardDescription = results?["cardDescription"] as? String
+                    let card = Card(cardTitle: cardTitle, cardDescription: cardDescription)
+                    print(card.cardTitle!)
                     self.cards.append(card)
                 }
             }
         })
     }
-
+        
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
