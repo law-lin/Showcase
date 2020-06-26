@@ -27,6 +27,11 @@ class ProfileViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillAppear(_ animated: Bool){
+        loadDataFromDatabase()
+        tableView.reloadData()
+    }
+    
     func loadDataFromDatabase() {
         let userID = Auth.auth().currentUser?.uid
         ref.child("cards").queryOrdered(byChild: "userID!").queryEqual(toValue: userID!).observe(.childAdded, with: { (snapshot) in
@@ -51,19 +56,22 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // #warning Incomplete implementation, return the number of row
+        return cards.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath)
 
         // Configure the cell...
+        let card = cards[indexPath.row]
+        cell.textLabel?.text = card.cardTitle
+        cell.detailTextLabel?.text = card.cardDescription
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

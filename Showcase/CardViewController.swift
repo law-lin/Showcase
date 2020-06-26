@@ -67,8 +67,17 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @objc func saveCard() {
         // save card in Firebase
         let userID = Auth.auth().currentUser?.uid
-        self.ref.child("cards/\(userID!)/cardTitle").setValue(cardTitle.text)
-        self.ref.child("cards/\(userID!)/cardTitle").setValue(cardDescription.text)
+        if currentCard == nil {
+            currentCard = Card(cardTitle: cardTitle.text, cardDescription: cardDescription.text)
+            let newRef = self.ref.child("cards/\(userID!)/").childByAutoId()
+            currentCard?.cardID = newRef.key
+            newRef.setValue(["cardTitle": currentCard!.cardTitle, "cardDescription": currentCard!.cardDescription])
+        }
+        else {
+            let currentCardID : String = (currentCard?.cardID!)!
+            let updateRef = self.ref.child("cards/\(userID!)/\(currentCardID)")
+            updateRef.updateChildValues(["cardTitle": cardTitle.text!, "cardDescription": cardDescription.text!])
+        }
         sgmtEditMode.selectedSegmentIndex = 0
         changeEditMode(self)
     }

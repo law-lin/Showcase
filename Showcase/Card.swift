@@ -9,6 +9,7 @@
 import Foundation
 
 class Card {
+    var cardID: String?
     var cardTitle: String?
     var cardDescription: String?
     
