@@ -57,11 +57,12 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        self.dismiss(animated: true, completion: { () -> Void in
-        })
-        let selectedImage : UIImage = image
-        cardImage.image = selectedImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            cardImage.contentMode = .scaleAspectFit
+            cardImage.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func saveCard() {
@@ -77,6 +78,8 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let currentCardID : String = (currentCard?.cardID!)!
             let updateRef = self.ref.child("cards/\(userID!)/\(currentCardID)")
             updateRef.updateChildValues(["cardTitle": cardTitle.text!, "cardDescription": cardDescription.text!])
+            
+            
         }
         sgmtEditMode.selectedSegmentIndex = 0
         changeEditMode(self)
@@ -84,6 +87,12 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if currentCard != nil{
+            cardTitle.text = currentCard?.cardTitle
+            cardDescription.text = currentCard?.cardDescription
+//            cardImage.image = currentCard?.card
+        }
         self.changeEditMode(self)
     }
     

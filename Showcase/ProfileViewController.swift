@@ -10,6 +10,14 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+class CardCell: UITableViewCell {
+    
+    @IBOutlet weak var cardTitleLabel: UILabel!
+    @IBOutlet weak var cardDescriptionLabel: UILabel!
+    @IBOutlet weak var cardImageView: UIImageView!
+    
+    
+}
 class ProfileViewController: UITableViewController {
 
     var cards = [Card]()
@@ -19,8 +27,10 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         loadDataFromDatabase()
-        
+        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -38,16 +48,15 @@ class ProfileViewController: UITableViewController {
             if let dict = snapshot.children.allObjects as? [DataSnapshot]{
                 self.cards.removeAll()
                 for result in dict {
-                    print(dict)
                     let results = result.value as? [String : AnyObject]
-                    print(results!)
                     let cardTitle = results?["cardTitle"] as? String
                     let cardDescription = results?["cardDescription"] as? String
                     let card = Card(cardTitle: cardTitle, cardDescription: cardDescription)
-                    print(card.cardTitle!)
                     self.cards.append(card)
+                    self.tableView.reloadData()
                 }
             }
+           
         })
     }
         
@@ -55,7 +64,7 @@ class ProfileViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,13 +74,13 @@ class ProfileViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as! CardCell
 
         // Configure the cell...
         let card = cards[indexPath.row]
-        cell.textLabel?.text = card.cardTitle
-        cell.detailTextLabel?.text = card.cardDescription
-
+        cell.cardTitleLabel?.text = card.cardTitle
+        cell.cardDescriptionLabel?.text = card.cardDescription
+//        cell.cardImageView?.imaage = card.cardImage
         return cell
     }
     
@@ -117,7 +126,7 @@ class ProfileViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditCard"{
             let taskController = segue.destination as? CardViewController
-            let selectedRow = self.tableView.indexPath(for: sender as! UITableViewCell)?.row
+            let selectedRow = tableView.indexPathForSelectedRow?.row
             let selectedCard = cards[selectedRow!]
             taskController?.currentCard = selectedCard
         }
