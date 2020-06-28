@@ -29,8 +29,20 @@ class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        print("load alert")
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         loadDataFromDatabase()
+        dismiss(animated: false, completion: nil)
         tableView.reloadData()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,21 +55,28 @@ class ProfileViewController: UITableViewController {
     }
     
     func loadDataFromDatabase() {
+        
         let userID = Auth.auth().currentUser?.uid
         ref.child("cards").child(userID!).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
             if let dict = snapshot.children.allObjects as? [DataSnapshot]{
                 self.cards.removeAll()
                 for result in dict {
+                    print("loading.")
                     let results = result.value as? [String : AnyObject]
+                    let cardID = result.key
                     let cardTitle = results?["cardTitle"] as? String
                     let cardDescription = results?["cardDescription"] as? String
+                    let cardImageURL = results?["cardImageURL"] as? String
                     let card = Card(cardTitle: cardTitle, cardDescription: cardDescription)
+                    card.cardID = cardID
+                    card.cardImageURL = cardImageURL
                     self.cards.append(card)
                     self.tableView.reloadData()
                 }
             }
            
         })
+        print("done loading.")
     }
         
     // MARK: - Table view data source
@@ -80,11 +99,21 @@ class ProfileViewController: UITableViewController {
         let card = cards[indexPath.row]
         cell.cardTitleLabel?.text = card.cardTitle
         cell.cardDescriptionLabel?.text = card.cardDescription
-//        cell.cardImageView?.imaage = card.cardImage
+        
+        if card.cardImageURL != nil{
+            
+            let url = URL(string: card.cardImageURL!)
+            if let imgData = try? Data(contentsOf: url!){
+                print("there is image data")
+                cell.cardImageView?.image = UIImage(data: imgData)
+            }
+        }
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300.0;
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

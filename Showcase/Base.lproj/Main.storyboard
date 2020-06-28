@@ -253,41 +253,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-1z-1eg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-1z-1eg">
                                             <rect key="frame" x="139.5" y="0.0" width="96" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="96" id="Ira-iL-k0B"/>
-                                            </constraints>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eab-Ge-4Pw">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eab-Ge-4Pw">
                                             <rect key="frame" x="0.0" y="24" width="375" height="170"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Card Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWd-7j-9hP">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWd-7j-9hP">
                                             <rect key="frame" x="4" y="194" width="371" height="74"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="74" id="um9-dF-CCL"/>
-                                            </constraints>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="OWd-7j-9hP" firstAttribute="leading" secondItem="6KL-Fx-dfA" secondAttribute="leading" id="Mz9-aO-RiS"/>
-                                        <constraint firstItem="eab-Ge-4Pw" firstAttribute="trailing" secondItem="OWd-7j-9hP" secondAttribute="trailing" id="PbT-ue-XNr"/>
-                                        <constraint firstAttribute="bottom" secondItem="OWd-7j-9hP" secondAttribute="bottom" id="Pwg-qH-ZnN"/>
-                                        <constraint firstAttribute="bottom" secondItem="OWd-7j-9hP" secondAttribute="bottom" id="csg-Va-2bM"/>
-                                        <constraint firstItem="rN9-1z-1eg" firstAttribute="top" secondItem="6KL-Fx-dfA" secondAttribute="top" id="dVp-yC-a8y"/>
-                                        <constraint firstAttribute="trailing" secondItem="OWd-7j-9hP" secondAttribute="trailing" id="hPm-oA-eii"/>
-                                        <constraint firstItem="eab-Ge-4Pw" firstAttribute="top" secondItem="rN9-1z-1eg" secondAttribute="bottom" constant="3" id="oBf-vp-Btm"/>
-                                        <constraint firstItem="rN9-1z-1eg" firstAttribute="centerX" secondItem="eab-Ge-4Pw" secondAttribute="centerX" id="s8F-zG-KlC"/>
-                                        <constraint firstItem="eab-Ge-4Pw" firstAttribute="leading" secondItem="6KL-Fx-dfA" secondAttribute="leading" id="sYN-HN-Of8"/>
-                                        <constraint firstItem="OWd-7j-9hP" firstAttribute="top" secondItem="eab-Ge-4Pw" secondAttribute="bottom" id="tZJ-5c-GOo"/>
-                                        <constraint firstItem="OWd-7j-9hP" firstAttribute="leading" secondItem="6KL-Fx-dfA" secondAttribute="leading" id="yNu-kq-gls"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cardDescriptionLabel" destination="OWd-7j-9hP" id="MLR-nD-UQ8"/>

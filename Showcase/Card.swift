@@ -12,6 +12,7 @@ class Card {
     var cardID: String?
     var cardTitle: String?
     var cardDescription: String?
+    var cardImageURL: String?
     
     init(cardTitle: String?, cardDescription: String?){
         self.cardTitle = cardTitle

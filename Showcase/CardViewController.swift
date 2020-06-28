@@ -24,7 +24,8 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     var imagePicker = UIImagePickerController()
     
-    var ref = Database.database().reference()
+    var dbRef = Database.database().reference()
+    var storageRef = Storage.storage().reference()
     
     @IBAction func changeEditMode(_ sender: Any){
            let textFields: [UITextField] = [cardTitle, cardDescription]
@@ -69,17 +70,48 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // save card in Firebase
         let userID = Auth.auth().currentUser?.uid
         if currentCard == nil {
-            currentCard = Card(cardTitle: cardTitle.text, cardDescription: cardDescription.text)
-            let newRef = self.ref.child("cards/\(userID!)/").childByAutoId()
-            currentCard?.cardID = newRef.key
-            newRef.setValue(["cardTitle": currentCard!.cardTitle, "cardDescription": currentCard!.cardDescription])
+            currentCard = Card(cardTitle: self.cardTitle.text, cardDescription: self.cardDescription.text)
+            let newRef = self.dbRef.child("cards/\(userID!)/").childByAutoId()
+            let currentCardID : String = newRef.key!
+            currentCard?.cardID = currentCardID
+            
+            print("success")
+            let imgRef = self.storageRef.child("cardImages/\(userID!)/\(currentCardID))")
+            if cardImage.image != nil{
+                if let uploadData = cardImage.image!.pngData(){
+                    imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        imgRef.downloadURL(completion: { (url, error) in
+                            self.currentCard?.cardImageURL = url?.absoluteString
+                            newRef.setValue(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!, "cardImageURL": url!.absoluteString])
+                            print("cardimage success")
+                        })
+                    }
+                }
+            }
+            else{
+                newRef.setValue(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!])
+            }
         }
         else {
             let currentCardID : String = (currentCard?.cardID!)!
-            let updateRef = self.ref.child("cards/\(userID!)/\(currentCardID)")
-            updateRef.updateChildValues(["cardTitle": cardTitle.text!, "cardDescription": cardDescription.text!])
-            
-            
+            let updateRef = self.dbRef.child("cards/\(userID!)/\(currentCardID)")
+          
+            let imgRef = self.storageRef.child("cardImages/\(userID!)/\(currentCardID)")
+            print("update success")
+            if cardImage.image != nil{
+                if let uploadData = cardImage.image!.pngData(){
+                    imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        imgRef.downloadURL(completion: { (url, error) in
+                            updateRef.updateChildValues(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!, "cardImageURL": url!.absoluteString])
+                             print("cardimage update success")
+                        })
+                    }
+                }
+            }
+            else {
+                  updateRef.updateChildValues(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!])
+            }
+           
         }
         sgmtEditMode.selectedSegmentIndex = 0
         changeEditMode(self)
@@ -87,12 +119,37 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         if currentCard != nil{
             cardTitle.text = currentCard?.cardTitle
             cardDescription.text = currentCard?.cardDescription
-//            cardImage.image = currentCard?.card
+            print(cardTitle.text!)
+           
+            if currentCard?.cardImageURL != nil {
+//                let imgURL = URL(string: (currentCard?.cardImageURL)!)
+                let imgRef = Storage.storage().reference(forURL: (currentCard?.cardImageURL)!)
+                imgRef.downloadURL(completion: { (url, error) in
+                    if(error != nil){
+                        print(error!)
+                        return
+                    }
+                    else{
+                        do{
+                            let imgData = try Data(contentsOf: url!) as Data
+                            let img = UIImage(data: imgData)
+                            self.cardImage.contentMode = .scaleToFill
+                            self.cardImage.image = img
+                           
+                        }
+                        catch{
+                            self.cardImage.image = nil
+                        }
+                    }
+                })
+            }
         }
+        
+        print("after load")
         self.changeEditMode(self)
     }
     
