@@ -80,7 +80,15 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if cardImage.image != nil{
                 if let uploadData = cardImage.image!.pngData(){
                     imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        if(error != nil){
+                            print(error!)
+                            return
+                        }
                         imgRef.downloadURL(completion: { (url, error) in
+                            if(error != nil){
+                                print(error!)
+                                return
+                            }
                             self.currentCard?.cardImageURL = url?.absoluteString
                             newRef.setValue(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!, "cardImageURL": url!.absoluteString])
                             print("cardimage success")
@@ -101,7 +109,15 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if cardImage.image != nil{
                 if let uploadData = cardImage.image!.pngData(){
                     imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        if(error != nil){
+                            print(error!)
+                            return
+                        }
                         imgRef.downloadURL(completion: { (url, error) in
+                            if(error != nil){
+                                print(error!)
+                                return
+                            }
                             updateRef.updateChildValues(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!, "cardImageURL": url!.absoluteString])
                              print("cardimage update success")
                         })

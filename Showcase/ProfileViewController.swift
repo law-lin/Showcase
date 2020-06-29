@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     var cards = [Card]()
     
-
     var ref = Database.database().reference()
     
     override func viewDidLoad() {
@@ -30,7 +29,6 @@ class ProfileViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        print("load alert")
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
@@ -61,7 +59,6 @@ class ProfileViewController: UITableViewController {
             if let dict = snapshot.children.allObjects as? [DataSnapshot]{
                 self.cards.removeAll()
                 for result in dict {
-                    print("loading.")
                     let results = result.value as? [String : AnyObject]
                     let cardID = result.key
                     let cardTitle = results?["cardTitle"] as? String
@@ -76,7 +73,6 @@ class ProfileViewController: UITableViewController {
             }
            
         })
-        print("done loading.")
     }
         
     // MARK: - Table view data source

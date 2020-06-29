@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  HomeTableViewController.swift
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/28/20.
@@ -7,20 +7,11 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
-class HomeViewController: UITableViewController {
-    
-    var users = [User]()
-    
-    var ref = Database.database().reference()
-    
+class HomeTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadDataFromDatabase()
-        tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,62 +19,28 @@ class HomeViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    override func viewWillAppear(_ animated: Bool){
-        loadDataFromDatabase()
-        tableView.reloadData()
-    }
-    
-    func loadDataFromDatabase() {
-        
-        let userID = Auth.auth().currentUser?.uid
-        users.removeAll()
-        ref.child("users").queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
-            if let dict = snapshot.children.allObjects as? [DataSnapshot]{
-                self.users.removeAll()
-                for result in dict {
-                    if(result.key == userID){
-                        return
-                    }
-                    let results = result.value as? [String : AnyObject]
-                    let isPrivate = results?["isPrivate"] as? Bool
-                    if(isPrivate != false){
-                        return
-                    }
-                    let username = results?["username"] as? String
-                    let user = User(username: username)
-                    user.userID = result.key
-                    self.users.append(user)
-                    self.tableView.reloadData()
-                }
-            }
-        })
-    }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return users.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
-       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
         // Configure the cell...
-        let user = users[indexPath.row]
-        print(user.username!)
-        cell.textLabel?.text = user.username
-    
-        
+
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.

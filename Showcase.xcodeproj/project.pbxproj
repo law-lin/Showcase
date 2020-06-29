@@ -14,12 +14,13 @@
 		534FB93D24A3AC4A00A11376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534FB93B24A3AC4A00A11376 /* LaunchScreen.storyboard */; };
 		534FB94524A3B47B00A11376 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB94424A3B47B00A11376 /* SignUpViewController.swift */; };
 		534FB94724A3B48500A11376 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB94624A3B48500A11376 /* LogInViewController.swift */; };
-		534FB94924A3B4E100A11376 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB94824A3B4E100A11376 /* HomeViewController.swift */; };
 		534FB94B24A5A43800A11376 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 534FB94A24A5A43800A11376 /* GoogleService-Info.plist */; };
 		534FB94D24A5AFC300A11376 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB94C24A5AFC300A11376 /* SettingsViewController.swift */; };
 		534FB95324A5B3BA00A11376 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB95224A5B3BA00A11376 /* ProfileViewController.swift */; };
 		534FB95524A5B64200A11376 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB95424A5B64200A11376 /* CardViewController.swift */; };
 		534FB95724A5C3A800A11376 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB95624A5C3A800A11376 /* Card.swift */; };
+		539CBC8624A96473003299EC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC8524A96473003299EC /* HomeViewController.swift */; };
+		539CBC8A24A97107003299EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC8924A97107003299EC /* User.swift */; };
 		B25725CBCE07A628076E6AE5 /* Pods_Showcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83950E83F27C7CFD3C942B1F /* Pods_Showcase.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,12 +35,13 @@
 		534FB93E24A3AC4A00A11376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534FB94424A3B47B00A11376 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		534FB94624A3B48500A11376 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		534FB94824A3B4E100A11376 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		534FB94A24A5A43800A11376 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		534FB94C24A5AFC300A11376 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		534FB95224A5B3BA00A11376 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		534FB95424A5B64200A11376 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		534FB95624A5C3A800A11376 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		539CBC8524A96473003299EC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		539CBC8924A97107003299EC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7E22704F4D2EF5966FABFCD0 /* Pods-Showcase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Showcase.debug.xcconfig"; path = "Target Support Files/Pods-Showcase/Pods-Showcase.debug.xcconfig"; sourceTree = "<group>"; };
 		83950E83F27C7CFD3C942B1F /* Pods_Showcase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Showcase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,11 +88,12 @@
 				534FB93E24A3AC4A00A11376 /* Info.plist */,
 				534FB94424A3B47B00A11376 /* SignUpViewController.swift */,
 				534FB94624A3B48500A11376 /* LogInViewController.swift */,
-				534FB94824A3B4E100A11376 /* HomeViewController.swift */,
 				534FB94C24A5AFC300A11376 /* SettingsViewController.swift */,
 				534FB95224A5B3BA00A11376 /* ProfileViewController.swift */,
 				534FB95424A5B64200A11376 /* CardViewController.swift */,
 				534FB95624A5C3A800A11376 /* Card.swift */,
+				539CBC8524A96473003299EC /* HomeViewController.swift */,
+				539CBC8924A97107003299EC /* User.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -228,14 +231,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				534FB94924A3B4E100A11376 /* HomeViewController.swift in Sources */,
 				534FB95724A5C3A800A11376 /* Card.swift in Sources */,
 				534FB94724A3B48500A11376 /* LogInViewController.swift in Sources */,
 				534FB94524A3B47B00A11376 /* SignUpViewController.swift in Sources */,
 				534FB92F24A3AC4600A11376 /* AppDelegate.swift in Sources */,
 				534FB95524A5B64200A11376 /* CardViewController.swift in Sources */,
+				539CBC8624A96473003299EC /* HomeViewController.swift in Sources */,
 				534FB95324A5B3BA00A11376 /* ProfileViewController.swift in Sources */,
 				534FB93124A3AC4600A11376 /* SceneDelegate.swift in Sources */,
+				539CBC8A24A97107003299EC /* User.swift in Sources */,
 				534FB94D24A5AFC300A11376 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
