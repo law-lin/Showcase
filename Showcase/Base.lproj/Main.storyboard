@@ -26,7 +26,7 @@
         <!--View Controller-->
         <scene sceneID="Hyw-Tm-XbR">
             <objects>
-                <viewController id="IHD-DG-vZD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IHD-DG-vZD" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1yt-TM-Vtl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -445,30 +445,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="114" translatesAutoresizingMaskIntoConstraints="NO" id="c0n-4k-yZL">
-                                <rect key="frame" x="16" y="174" width="169" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="114" translatesAutoresizingMaskIntoConstraints="NO" id="c0n-4k-yZL">
+                                <rect key="frame" x="74" y="209" width="227" height="189"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3CZ-n0-co9">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="227" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-2S-jY3">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="159" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nH6-zi-g7s">
-                                                <rect key="frame" x="120" y="0.0" width="51" height="31"/>
+                                                <rect key="frame" x="178" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="setPrivateMode:" destination="iX2-i0-vgd" eventType="valueChanged" id="daI-D0-fMb"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5u-H8-lV6">
+                                        <rect key="frame" x="0.0" y="145" width="227" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <state key="normal" title="Sign Out">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signOutButtonTapped:" destination="iX2-i0-vgd" eventType="touchUpInside" id="zsR-Vc-4Ae"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="c0n-4k-yZL" firstAttribute="leading" secondItem="BNH-0C-nOH" secondAttribute="leading" constant="74" id="N6O-Gd-dJ6"/>
+                            <constraint firstItem="c0n-4k-yZL" firstAttribute="top" secondItem="BNH-0C-nOH" secondAttribute="top" constant="209" id="UnI-uQ-2mY"/>
+                            <constraint firstItem="c0n-4k-yZL" firstAttribute="centerX" secondItem="UZx-fU-B9t" secondAttribute="centerX" id="XMC-5e-hQC"/>
+                            <constraint firstItem="BNH-0C-nOH" firstAttribute="bottom" secondItem="c0n-4k-yZL" secondAttribute="bottom" constant="220" id="vQu-Os-YHh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BNH-0C-nOH"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="settings" id="X0a-fT-7rd"/>
@@ -574,8 +590,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Biography" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41j-zs-bkn">
-                                    <rect key="frame" x="170" y="37" width="197" height="91"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Biography" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41j-zs-bkn">
+                                    <rect key="frame" x="170" y="37" width="380" height="91"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>

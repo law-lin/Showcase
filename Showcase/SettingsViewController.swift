@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController {
     
     var ref = Database.database().reference()
     
+    let auth = Auth.auth()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,20 @@ class SettingsViewController: UIViewController {
     @IBAction func setPrivateMode(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
         ref.child("users/\(userID!)").updateChildValues(["isPrivate": privateModeSwitch.isOn])
+    }
+    @IBAction func signOutButtonTapped(_ sender: Any) {
+        do{
+            try auth.signOut()
+            transitionToMainView()
+        } catch let error as NSError {
+            print("Error signing out: %@", error)
+            
+        }
+    }
+    
+    func transitionToMainView(){
+        let mainViewController = storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+        view.window?.rootViewController = mainViewController
     }
     /*
     // MARK: - Navigation
