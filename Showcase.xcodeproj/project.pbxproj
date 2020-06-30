@@ -21,6 +21,9 @@
 		534FB95724A5C3A800A11376 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB95624A5C3A800A11376 /* Card.swift */; };
 		539CBC8624A96473003299EC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC8524A96473003299EC /* HomeViewController.swift */; };
 		539CBC8A24A97107003299EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC8924A97107003299EC /* User.swift */; };
+		539CBC9024AA97FB003299EC /* PublicProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC8F24AA97FB003299EC /* PublicProfileViewController.swift */; };
+		539CBC9224AAA3F3003299EC /* PublicCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC9124AAA3F3003299EC /* PublicCardCell.swift */; };
+		539CBC9424AAB4BF003299EC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBC9324AAB4BF003299EC /* Extensions.swift */; };
 		B25725CBCE07A628076E6AE5 /* Pods_Showcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83950E83F27C7CFD3C942B1F /* Pods_Showcase.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		534FB95624A5C3A800A11376 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		539CBC8524A96473003299EC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		539CBC8924A97107003299EC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		539CBC8F24AA97FB003299EC /* PublicProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileViewController.swift; sourceTree = "<group>"; };
+		539CBC9124AAA3F3003299EC /* PublicCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCardCell.swift; sourceTree = "<group>"; };
+		539CBC9324AAB4BF003299EC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7E22704F4D2EF5966FABFCD0 /* Pods-Showcase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Showcase.debug.xcconfig"; path = "Target Support Files/Pods-Showcase/Pods-Showcase.debug.xcconfig"; sourceTree = "<group>"; };
 		83950E83F27C7CFD3C942B1F /* Pods_Showcase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Showcase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,6 +100,9 @@
 				534FB95624A5C3A800A11376 /* Card.swift */,
 				539CBC8524A96473003299EC /* HomeViewController.swift */,
 				539CBC8924A97107003299EC /* User.swift */,
+				539CBC8F24AA97FB003299EC /* PublicProfileViewController.swift */,
+				539CBC9124AAA3F3003299EC /* PublicCardCell.swift */,
+				539CBC9324AAB4BF003299EC /* Extensions.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -235,8 +244,11 @@
 				534FB94724A3B48500A11376 /* LogInViewController.swift in Sources */,
 				534FB94524A3B47B00A11376 /* SignUpViewController.swift in Sources */,
 				534FB92F24A3AC4600A11376 /* AppDelegate.swift in Sources */,
+				539CBC9224AAA3F3003299EC /* PublicCardCell.swift in Sources */,
 				534FB95524A5B64200A11376 /* CardViewController.swift in Sources */,
 				539CBC8624A96473003299EC /* HomeViewController.swift in Sources */,
+				539CBC9024AA97FB003299EC /* PublicProfileViewController.swift in Sources */,
+				539CBC9424AAB4BF003299EC /* Extensions.swift in Sources */,
 				534FB95324A5B3BA00A11376 /* ProfileViewController.swift in Sources */,
 				534FB93124A3AC4600A11376 /* SceneDelegate.swift in Sources */,
 				539CBC8A24A97107003299EC /* User.swift in Sources */,

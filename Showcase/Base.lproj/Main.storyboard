@@ -220,9 +220,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="XfB-k0-Jzn">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIj-3V-vPI">
+                                    <rect key="frame" x="193" y="8" width="79" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CardCell" rowHeight="268" id="DTh-vE-iHI" customClass="CardCell" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="268"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="268"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DTh-vE-iHI" id="6KL-Fx-dfA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
@@ -268,6 +282,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="usernameLabel" destination="kIj-3V-vPI" id="iBB-ba-W85"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T4X-mu-BYR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -482,7 +499,7 @@
             </objects>
             <point key="canvasLocation" x="2660" y="-636.4317841079461"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Browse Users-->
         <scene sceneID="K18-Z4-rLx">
             <objects>
                 <tableViewController id="wKL-Wo-tnU" customClass="HomeViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
@@ -498,6 +515,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="0pF-eX-1K0" kind="show" identifier="ViewUser" id="vOx-qz-3yc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -505,11 +525,71 @@
                             <outlet property="delegate" destination="wKL-Wo-tnU" id="uml-lb-H2I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8QD-js-dl0"/>
+                    <navigationItem key="navigationItem" title="Browse Users" id="8QD-js-dl0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B2P-iU-lJX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3449" y="-636"/>
+        </scene>
+        <!--Public Profile View Controller-->
+        <scene sceneID="dLK-nT-zD5">
+            <objects>
+                <tableViewController id="0pF-eX-1K0" customClass="PublicProfileViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TRZ-IQ-RLp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PublicCardCell" rowHeight="288" id="Cvr-gl-ZcU" customClass="PublicCardCell" customModule="Showcase" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="288"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cvr-gl-ZcU" id="FKV-4d-o76" customClass="PublicCardCell" customModule="Showcase" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="288"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-zM-M7O">
+                                            <rect key="frame" x="150" y="0.0" width="75" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OnC-cR-DLm">
+                                            <rect key="frame" x="0.0" y="29" width="375" height="170"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQB-Pl-hg0">
+                                            <rect key="frame" x="0.0" y="200" width="375" height="88"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardDescriptionLabel" destination="aQB-Pl-hg0" id="ZhM-pC-KAc"/>
+                                    <outlet property="cardImageView" destination="OnC-cR-DLm" id="qEc-De-KiF"/>
+                                    <outlet property="cardTitleLabel" destination="kCR-zM-M7O" id="zw1-Xl-2YW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0pF-eX-1K0" id="em1-q7-l0p"/>
+                            <outlet property="delegate" destination="0pF-eX-1K0" id="hLz-mm-xeH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ema-Xf-ibK"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ajd-hl-l7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dDt-rL-e2c">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="safeArea" id="Azq-uo-6SY"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="4197.6000000000004" y="-636.4317841079461"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

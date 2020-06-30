@@ -46,7 +46,7 @@ class HomeViewController: UITableViewController {
                     }
                     let results = result.value as? [String : AnyObject]
                     let isPrivate = results?["isPrivate"] as? Bool
-                    if(isPrivate != false){
+                    if(isPrivate == true){
                         return
                     }
                     let username = results?["username"] as? String
@@ -77,10 +77,8 @@ class HomeViewController: UITableViewController {
        
         // Configure the cell...
         let user = users[indexPath.row]
-        print(user.username!)
         cell.textLabel?.text = user.username
     
-        
         return cell
     }
     
@@ -120,14 +118,18 @@ class HomeViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ViewUser"{
+            let taskController = segue.destination as? PublicProfileViewController
+            let selectedRow = tableView.indexPathForSelectedRow?.row
+            let selectedUser = users[selectedRow!]
+            taskController?.selectedUser = selectedUser
+        }
     }
-    */
+    
 
 }

@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  PublicProfileViewController.swift
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/26/20.
@@ -10,16 +10,10 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class CardCell: UITableViewCell {
+class PublicProfileViewController: UITableViewController {
     
-    @IBOutlet weak var cardTitleLabel: UILabel!
-    @IBOutlet weak var cardDescriptionLabel: UILabel!
-    @IBOutlet weak var cardImageView: UIImageView!
-}
-
-class ProfileViewController: UITableViewController {
-
-    @IBOutlet weak var usernameLabel: UILabel!
+    var selectedUser : User?
+    
     var cards = [Card]()
     
     var ref = Database.database().reference()
@@ -29,17 +23,9 @@ class ProfileViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-        loadingIndicator.startAnimating();
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
         loadDataFromDatabase()
-        dismiss(animated: false, completion: nil)
-        tableView.reloadData()
-        
+
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,43 +34,31 @@ class ProfileViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool){
         loadDataFromDatabase()
-        tableView.reloadData()
     }
     
     func loadDataFromDatabase() {
-        
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("users").queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
-        if let dict = snapshot.children.allObjects as? [DataSnapshot]{
-            for result in dict {
-                let results = result.value as? [String : AnyObject]
-                if(result.key == userID){
-                    self.usernameLabel.text = results?["username"] as? String
-                    return
+        self.navigationItem.title = selectedUser?.username
+        if let userID = selectedUser?.userID{
+     
+            ref.child("cards").child(userID).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
+                if let dict = snapshot.children.allObjects as? [DataSnapshot]{
+                    self.cards.removeAll()
+                    for result in dict {
+                        let results = result.value as? [String : AnyObject]
+                        let cardID = result.key
+                        let cardTitle = results?["cardTitle"] as? String
+                        let cardDescription = results?["cardDescription"] as? String
+                        let cardImageURL = results?["cardImageURL"] as? String
+                        let card = Card(cardTitle: cardTitle, cardDescription: cardDescription)
+                        card.cardID = cardID
+                        card.cardImageURL = cardImageURL
+                        self.cards.append(card)
+                        self.tableView.reloadData()
+                    }
                 }
-            }
-            
-            }
-        })
-                
-        ref.child("cards").child(userID!).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
-            if let dict = snapshot.children.allObjects as? [DataSnapshot]{
-                self.cards.removeAll()
-                for result in dict {
-                    let results = result.value as? [String : AnyObject]
-                    let cardID = result.key
-                    let cardTitle = results?["cardTitle"] as? String
-                    let cardDescription = results?["cardDescription"] as? String
-                    let cardImageURL = results?["cardImageURL"] as? String
-                    let card = Card(cardTitle: cardTitle, cardDescription: cardDescription)
-                    card.cardID = cardID
-                    card.cardImageURL = cardImageURL
-                    self.cards.append(card)
-                    self.tableView.reloadData()
-                }
-            }
-        })
-        
+               
+            })
+        }
     }
         
     // MARK: - Table view data source
@@ -101,7 +75,7 @@ class ProfileViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as! CardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PublicCardCell", for: indexPath) as! PublicCardCell
 
         // Configure the cell...
         let card = cards[indexPath.row]
@@ -116,7 +90,7 @@ class ProfileViewController: UITableViewController {
 //
 //            let url = URL(string: card.cardImageURL!)
 //            if let imgData = try? Data(contentsOf: url!){
-//                print("setting image")
+//                print("there is image data")
 //                cell.cardImageView?.image = UIImage(data: imgData)
 //            }
 //        }
@@ -142,7 +116,7 @@ class ProfileViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -172,4 +146,6 @@ class ProfileViewController: UITableViewController {
             taskController?.currentCard = selectedCard
         }
     }
+    
 }
+
