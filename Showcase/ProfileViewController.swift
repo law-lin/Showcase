@@ -187,12 +187,16 @@ class ProfileViewController: UITableViewController {
             usernameTextField.isEnabled = true
             usernameTextField.borderStyle = UITextField.BorderStyle.roundedRect
             biographyTextView.isEditable = true
+            biographyTextView.layer.borderColor = UIColor.lightGray.cgColor
+            biographyTextView.layer.borderWidth = 1
         }
         else{
             editProfileButton.title = "Edit Profile"
             usernameTextField.isEnabled = false
             usernameTextField.borderStyle = UITextField.BorderStyle.none
             biographyTextView.isEditable = false
+            biographyTextView.layer.borderColor = nil
+            biographyTextView.layer.borderWidth = 0
             
             let updateRef = self.ref.child("users/\(userID!)")
             updateRef.updateChildValues(["username": usernameTextField.text!, "biography": biographyTextView.text!])

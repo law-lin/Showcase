@@ -139,32 +139,12 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             cardTitle.text = currentCard?.cardTitle
             cardDescription.text = currentCard?.cardDescription
             print(cardTitle.text!)
-           
-            if currentCard?.cardImageURL != nil {
-//                let imgURL = URL(string: (currentCard?.cardImageURL)!)
-                let imgRef = Storage.storage().reference(forURL: (currentCard?.cardImageURL)!)
-                imgRef.downloadURL(completion: { (url, error) in
-                    if(error != nil){
-                        print(error!)
-                        return
-                    }
-                    else{
-                        do{
-                            let imgData = try Data(contentsOf: url!) as Data
-                            let img = UIImage(data: imgData)
-                            self.cardImage.contentMode = .scaleToFill
-                            self.cardImage.image = img
-                           
-                        }
-                        catch{
-                            self.cardImage.image = nil
-                        }
-                    }
-                })
+            
+            
+            if let cardImageURL = currentCard?.cardImageURL{
+                cardImage.loadImageUsingCache(urlString: cardImageURL)
             }
         }
-        
-        print("after load")
         self.changeEditMode(self)
     }
     

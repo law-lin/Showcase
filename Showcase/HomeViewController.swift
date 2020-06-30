@@ -42,12 +42,12 @@ class HomeViewController: UITableViewController {
                 self.users.removeAll()
                 for result in dict {
                     if(result.key == userID){
-                        return
+                        continue
                     }
                     let results = result.value as? [String : AnyObject]
                     let isPrivate = results?["isPrivate"] as? Bool
                     if(isPrivate == true){
-                        return
+                        continue
                     }
                     let username = results?["username"] as? String
                     let user = User(username: username)
