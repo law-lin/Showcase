@@ -221,25 +221,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XfB-k0-Jzn">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIj-3V-vPI">
-                                    <rect key="frame" x="193" y="8" width="79" height="29"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6BQ-Fr-p7N">
+                                    <rect key="frame" x="8" y="0.0" width="154" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                </imageView>
+                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktb-jv-Cbg">
+                                    <rect key="frame" x="170" y="8" width="197" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPr-Mk-iqI">
+                                    <rect key="frame" x="170" y="50" width="197" height="78"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CardCell" rowHeight="268" id="DTh-vE-iHI" customClass="CardCell" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="208" width="375" height="268"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CardCell" rowHeight="230" id="DTh-vE-iHI" customClass="CardCell" customModule="Showcase" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="176" width="375" height="230"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DTh-vE-iHI" id="6KL-Fx-dfA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-1z-1eg">
@@ -250,11 +261,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eab-Ge-4Pw">
-                                            <rect key="frame" x="0.0" y="24" width="375" height="170"/>
+                                            <rect key="frame" x="43" y="24" width="289" height="136"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWd-7j-9hP">
-                                            <rect key="frame" x="4" y="194" width="371" height="74"/>
+                                            <rect key="frame" x="16" y="168" width="371" height="46"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -276,6 +287,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="xuz-0h-V3L">
+                        <barButtonItem key="leftBarButtonItem" title="Edit Profile" id="kuH-42-Qj2">
+                            <connections>
+                                <action selector="editProfileButtonTapped:" destination="bfq-0s-pJG" id="qtV-qy-9PL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="NYP-44-B2e">
                             <connections>
                                 <segue destination="XUn-84-thl" kind="show" identifier="AddCard" id="aq6-Uw-d4y"/>
@@ -283,7 +299,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="usernameLabel" destination="kIj-3V-vPI" id="iBB-ba-W85"/>
+                        <outlet property="biographyTextView" destination="lPr-Mk-iqI" id="LPY-w3-75X"/>
+                        <outlet property="editProfileButton" destination="kuH-42-Qj2" id="K9n-LE-FPX"/>
+                        <outlet property="profilePictureView" destination="6BQ-Fr-p7N" id="9AY-3K-ETR"/>
+                        <outlet property="usernameTextField" destination="ktb-jv-Cbg" id="GFj-p8-VRZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T4X-mu-BYR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -401,11 +420,11 @@
             </objects>
             <point key="canvasLocation" x="4197.6000000000004" y="28.335832083958024"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="mOV-z3-kTV">
             <objects>
                 <navigationController id="qeW-o1-1BO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="person.fill" catalog="system" id="HTN-vM-gGE"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="HTN-vM-gGE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="61c-20-0qs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -418,7 +437,7 @@
             </objects>
             <point key="canvasLocation" x="2660" y="30"/>
         </scene>
-        <!--Item-->
+        <!--Settings View Controller-->
         <scene sceneID="9vt-Th-PEN">
             <objects>
                 <viewController id="iX2-i0-vgd" customClass="SettingsViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
@@ -426,32 +445,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-2S-jY3">
-                                <rect key="frame" x="16" y="188" width="107" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nH6-zi-g7s">
-                                <rect key="frame" x="142" y="197" width="49" height="31"/>
-                                <connections>
-                                    <action selector="setPrivateMode:" destination="iX2-i0-vgd" eventType="valueChanged" id="daI-D0-fMb"/>
-                                </connections>
-                            </switch>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="114" translatesAutoresizingMaskIntoConstraints="NO" id="c0n-4k-yZL">
+                                <rect key="frame" x="16" y="174" width="169" height="31"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3CZ-n0-co9">
+                                        <rect key="frame" x="0.0" y="0.0" width="169" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-2S-jY3">
+                                                <rect key="frame" x="0.0" y="0.0" width="101" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nH6-zi-g7s">
+                                                <rect key="frame" x="120" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="setPrivateMode:" destination="iX2-i0-vgd" eventType="valueChanged" id="daI-D0-fMb"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="BNH-0C-nOH" firstAttribute="bottom" secondItem="oYf-2S-jY3" secondAttribute="bottom" constant="382" id="PwO-TQ-84D"/>
-                            <constraint firstItem="oYf-2S-jY3" firstAttribute="leading" secondItem="UZx-fU-B9t" secondAttribute="leadingMargin" id="WZs-x3-j7x"/>
-                            <constraint firstItem="oYf-2S-jY3" firstAttribute="centerY" secondItem="nH6-zi-g7s" secondAttribute="centerY" id="pOV-gD-loM"/>
-                            <constraint firstItem="nH6-zi-g7s" firstAttribute="leading" secondItem="oYf-2S-jY3" secondAttribute="trailing" constant="19" id="sQ9-Tk-ud7"/>
-                            <constraint firstItem="oYf-2S-jY3" firstAttribute="top" secondItem="BNH-0C-nOH" secondAttribute="top" constant="188" id="tKX-s2-R7c"/>
-                            <constraint firstItem="nH6-zi-g7s" firstAttribute="top" secondItem="BNH-0C-nOH" secondAttribute="top" constant="197" id="tb8-nt-40w"/>
-                            <constraint firstItem="BNH-0C-nOH" firstAttribute="trailing" secondItem="nH6-zi-g7s" secondAttribute="trailing" constant="184" id="xt4-Pf-3Df"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BNH-0C-nOH"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="X0a-fT-7rd"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings" id="X0a-fT-7rd"/>
                     <connections>
                         <outlet property="privateModeSwitch" destination="nH6-zi-g7s" id="Uq8-e7-m33"/>
                     </connections>
@@ -480,11 +500,11 @@
             </objects>
             <point key="canvasLocation" x="1864.8" y="30.134932533733135"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="qo6-Ra-DrS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sSv-G8-5Hg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="house.fill" catalog="system" id="Wby-Bj-i2S"/>
+                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="Wby-Bj-i2S"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9IV-Aw-Iir">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -539,12 +559,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="GxX-Lg-9dt">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hc9-FL-py3">
+                                    <rect key="frame" x="8" y="0.0" width="154" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HT-aZ-Z5c">
+                                    <rect key="frame" x="170" y="8" width="197" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Biography" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41j-zs-bkn">
+                                    <rect key="frame" x="170" y="37" width="197" height="91"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PublicCardCell" rowHeight="288" id="Cvr-gl-ZcU" customClass="PublicCardCell" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="288"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PublicCardCell" rowHeight="249" id="Cvr-gl-ZcU" customClass="PublicCardCell" customModule="Showcase" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="176" width="375" height="249"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cvr-gl-ZcU" id="FKV-4d-o76" customClass="PublicCardCell" customModule="Showcase" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="288"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-zM-M7O">
@@ -555,11 +600,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OnC-cR-DLm">
-                                            <rect key="frame" x="0.0" y="29" width="375" height="170"/>
+                                            <rect key="frame" x="39" y="29" width="297" height="146"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQB-Pl-hg0">
-                                            <rect key="frame" x="0.0" y="200" width="375" height="88"/>
+                                            <rect key="frame" x="0.0" y="183" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -580,6 +625,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ema-Xf-ibK"/>
+                    <connections>
+                        <outlet property="biographyTextLabel" destination="41j-zs-bkn" id="Pmk-cV-ZYD"/>
+                        <outlet property="profilePictureView" destination="hc9-FL-py3" id="4tn-kq-KLL"/>
+                        <outlet property="usernameTextLabel" destination="2HT-aZ-Z5c" id="4Ec-l9-SHT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajd-hl-l7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="dDt-rL-e2c">
@@ -598,5 +648,6 @@
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="settings" width="32" height="32"/>
     </resources>
 </document>

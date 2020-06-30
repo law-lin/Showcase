@@ -19,11 +19,17 @@ class CardCell: UITableViewCell {
 
 class ProfileViewController: UITableViewController {
 
-    @IBOutlet weak var usernameLabel: UILabel!
+  
+    @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var biographyTextView: UITextView!
+    @IBOutlet weak var profilePictureView: UIImageView!
+    
     var cards = [Card]()
     
+    let userID = Auth.auth().currentUser?.uid
     var ref = Database.database().reference()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -53,13 +59,14 @@ class ProfileViewController: UITableViewController {
     
     func loadDataFromDatabase() {
         
-        let userID = Auth.auth().currentUser?.uid
+    
         ref.child("users").queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
         if let dict = snapshot.children.allObjects as? [DataSnapshot]{
             for result in dict {
                 let results = result.value as? [String : AnyObject]
-                if(result.key == userID){
-                    self.usernameLabel.text = results?["username"] as? String
+                if(result.key == self.userID){
+                    self.usernameTextField.text = results?["username"] as? String
+                    self.biographyTextView.text = results?["biography"] as? String
                     return
                 }
             }
@@ -172,4 +179,29 @@ class ProfileViewController: UITableViewController {
             taskController?.currentCard = selectedCard
         }
     }
+    
+    
+    @IBAction func editProfileButtonTapped(_ sender: Any) {
+        if(editProfileButton.title == "Edit Profile"){
+            editProfileButton.title = "Save"
+            usernameTextField.isEnabled = true
+            usernameTextField.borderStyle = UITextField.BorderStyle.roundedRect
+            biographyTextView.isEditable = true
+        }
+        else{
+            editProfileButton.title = "Edit Profile"
+            usernameTextField.isEnabled = false
+            usernameTextField.borderStyle = UITextField.BorderStyle.none
+            biographyTextView.isEditable = false
+            
+            let updateRef = self.ref.child("users/\(userID!)")
+            updateRef.updateChildValues(["username": usernameTextField.text!, "biography": biographyTextView.text!])
+           
+        }
+
+    } 
+    
 }
+
+
+

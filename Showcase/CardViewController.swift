@@ -75,7 +75,6 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let currentCardID : String = newRef.key!
             currentCard?.cardID = currentCardID
             
-            print("success")
             let imgRef = self.storageRef.child("cardImages/\(userID!)/\(currentCardID))")
             if cardImage.image != nil{
                 if let uploadData = cardImage.image!.pngData(){

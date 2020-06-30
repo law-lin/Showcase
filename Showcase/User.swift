@@ -11,8 +11,10 @@ import Foundation
 class User {
     var userID: String?
     var username: String?
+    var biography: String?
     
     init(username: String?){
         self.username = username
+        self.biography = ""
     }
 }

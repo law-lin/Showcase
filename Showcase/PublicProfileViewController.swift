@@ -12,6 +12,10 @@ import FirebaseDatabase
 
 class PublicProfileViewController: UITableViewController {
     
+    @IBOutlet weak var usernameTextLabel: UILabel!
+    @IBOutlet weak var biographyTextLabel: UILabel!
+    @IBOutlet weak var profilePictureView: UIImageView!
+    
     var selectedUser : User?
     
     var cards = [Card]()
@@ -22,6 +26,9 @@ class PublicProfileViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        usernameTextLabel.text = selectedUser?.username
+        biographyTextLabel.text = selectedUser?.biography
         
         loadDataFromDatabase()
 

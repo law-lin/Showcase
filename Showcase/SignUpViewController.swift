@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
                 else{
                     // Store user in Cloud Firestore
                     let ref = Database.database().reference()
-                    ref.child("users").child(authResult!.user.uid).setValue(["username": username, "isPrivate": false])
+                    ref.child("users").child(authResult!.user.uid).setValue(["username": username, "biography": "", "isPrivate": false])
                     self.transitionToHome()
                 }
             }
