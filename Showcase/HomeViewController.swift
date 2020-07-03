@@ -52,6 +52,8 @@ class HomeViewController: UITableViewController {
                     let username = results?["username"] as? String
                     let user = User(username: username)
                     user.userID = result.key
+                    user.biography = results?["biography"] as? String
+                    user.profilePictureURL = results?["profilePictureURL"] as? String
                     self.users.append(user)
                     self.tableView.reloadData()
                 }

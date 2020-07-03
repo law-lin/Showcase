@@ -17,19 +17,23 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var cardImageView: UIImageView!
 }
 
-class ProfileViewController: UITableViewController {
+class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var biographyTextView: UITextView!
-    @IBOutlet weak var profilePictureView: UIImageView!
+    @IBOutlet weak var profilePicture: UIButton!
     
+    @IBOutlet weak var profilePictureView: UIImageView!
     var cards = [Card]()
     
     let userID = Auth.auth().currentUser?.uid
     var ref = Database.database().reference()
-
+    var storageRef = Storage.storage().reference()
+    
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -67,6 +71,13 @@ class ProfileViewController: UITableViewController {
                 if(result.key == self.userID){
                     self.usernameTextField.text = results?["username"] as? String
                     self.biographyTextView.text = results?["biography"] as? String
+                    
+                    if let profilePictureURL = results?["profilePictureURL"] as? String{
+                        print("Loading profile picture")
+                        print(profilePictureURL)
+                        self.profilePictureView?.loadImageUsingCache(urlString: profilePictureURL)
+                        
+                    }
                     return
                 }
             }
@@ -189,6 +200,7 @@ class ProfileViewController: UITableViewController {
             biographyTextView.isEditable = true
             biographyTextView.layer.borderColor = UIColor.lightGray.cgColor
             biographyTextView.layer.borderWidth = 1
+            profilePicture.isEnabled = true
         }
         else{
             editProfileButton.title = "Edit Profile"
@@ -198,12 +210,54 @@ class ProfileViewController: UITableViewController {
             biographyTextView.layer.borderColor = nil
             biographyTextView.layer.borderWidth = 0
             
+            profilePicture.isEnabled = false
             let updateRef = self.ref.child("users/\(userID!)")
-            updateRef.updateChildValues(["username": usernameTextField.text!, "biography": biographyTextView.text!])
+            let imgRef = self.storageRef.child("profilePictures/\(userID!)")
            
+            if profilePicture.imageView?.image != nil{
+                if let uploadData = profilePicture.imageView?.image!.pngData(){
+                    imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        if(error != nil){
+                            print(error!)
+                            return
+                        }
+                        imgRef.downloadURL(completion: { (url, error) in
+                            if(error != nil){
+                                print(error!)
+                                return
+                            }
+                            updateRef.updateChildValues(["username": self.usernameTextField.text!, "biography": self.biographyTextView.text!, "profilePictureURL": url!.absoluteString])
+                             print("Profile picture update success")
+                        })
+                    }
+                }
+            }
+            else{
+                let updateRef = self.ref.child("users/\(userID!)")
+                updateRef.updateChildValues(["username": usernameTextField.text!, "biography": biographyTextView.text!])
+            }
         }
-
-    } 
+    }
+    
+    
+    @IBAction func profilePictureTapped(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.allowsEditing = false
+                
+                present(imagePicker, animated: true, completion: nil)
+            }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profilePictureView.contentMode = .scaleAspectFit
+            profilePictureView.image = selectedImage
+//            profilePicture.setImage(selectedImage, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

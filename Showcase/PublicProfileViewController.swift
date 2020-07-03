@@ -30,8 +30,11 @@ class PublicProfileViewController: UITableViewController {
         usernameTextLabel.text = selectedUser?.username
         biographyTextLabel.text = selectedUser?.biography
         
+        if let profilePictureURL = selectedUser?.profilePictureURL{
+            profilePictureView.loadImageUsingCache(urlString: profilePictureURL)
+            
+        }
         loadDataFromDatabase()
-
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

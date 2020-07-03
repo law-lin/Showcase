@@ -12,9 +12,11 @@ class User {
     var userID: String?
     var username: String?
     var biography: String?
+    var profilePictureURL: String?
     
     init(username: String?){
         self.username = username
         self.biography = ""
+        self.profilePictureURL = ""
     }
 }
