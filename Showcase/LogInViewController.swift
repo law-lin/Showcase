@@ -25,6 +25,10 @@ class LogInViewController: UIViewController {
     
     func initLogIn(){
         errorLabel.alpha = 0
+        
+        Styles.styleTextField(emailTextField)
+        Styles.styleTextField(passwordTextField)
+        Styles.styleButton(loginButton)
     }
 
     /*

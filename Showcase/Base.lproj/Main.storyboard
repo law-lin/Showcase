@@ -23,16 +23,16 @@
             </objects>
             <point key="canvasLocation" x="-302" y="-12"/>
         </scene>
-        <!--View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="Hyw-Tm-XbR">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IHD-DG-vZD" sceneMemberID="viewController">
+                <viewController id="IHD-DG-vZD" customClass="InitialViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1yt-TM-Vtl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="008-l0-DmA">
-                                <rect key="frame" x="40" y="297" width="295" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="008-l0-DmA">
+                                <rect key="frame" x="40" y="273" width="295" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jem-re-0yN">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
@@ -56,6 +56,20 @@
                                     <constraint firstItem="FvV-mz-vwf" firstAttribute="height" secondItem="Jem-re-0yN" secondAttribute="height" id="kce-ES-Pga"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Showcase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsk-nX-M8x">
+                                <rect key="frame" x="116" y="158" width="143" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Created by Lawrence Lin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNv-xg-gux">
+                                <rect key="frame" x="92" y="626" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -66,6 +80,10 @@
                         <viewLayoutGuide key="safeArea" id="bJG-kg-4N1"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dl3-eS-Kgq"/>
+                    <connections>
+                        <outlet property="loginButton" destination="Jem-re-0yN" id="bmJ-4V-zrB"/>
+                        <outlet property="signupButton" destination="FvV-mz-vwf" id="8qs-kN-SLK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gh-kN-tse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,8 +325,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="biographyTextView" destination="lPr-Mk-iqI" id="LPY-w3-75X"/>
+                        <outlet property="changeProfilePicture" destination="30e-Gs-m9i" id="gPr-29-8mg"/>
                         <outlet property="editProfileButton" destination="kuH-42-Qj2" id="K9n-LE-FPX"/>
-                        <outlet property="profilePicture" destination="30e-Gs-m9i" id="oBA-Dv-PlB"/>
                         <outlet property="profilePictureView" destination="YPh-PN-B3K" id="b7S-j2-aGi"/>
                         <outlet property="usernameTextField" destination="ktb-jv-Cbg" id="GFj-p8-VRZ"/>
                     </connections>

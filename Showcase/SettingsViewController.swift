@@ -42,16 +42,16 @@ class SettingsViewController: UIViewController {
     @IBAction func signOutButtonTapped(_ sender: Any) {
         do{
             try auth.signOut()
-            transitionToMainView()
+            transitionToInitialView()
         } catch let error as NSError {
             print("Error signing out: %@", error)
             
         }
     }
     
-    func transitionToMainView(){
-        let mainViewController = storyboard?.instantiateViewController(withIdentifier: "MainViewController")
-        view.window?.rootViewController = mainViewController
+    func transitionToInitialView(){
+        let initialViewController = storyboard?.instantiateViewController(withIdentifier: "InitialViewController")
+        view.window?.rootViewController = initialViewController
     }
     /*
     // MARK: - Navigation

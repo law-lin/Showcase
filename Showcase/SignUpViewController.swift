@@ -31,6 +31,10 @@ class SignUpViewController: UIViewController {
         // Hide error label
         errorLabel.alpha = 0
         
+        Styles.styleTextField(usernameTextField)
+        Styles.styleTextField(emailTextField)
+        Styles.styleTextField(passwordTextField)
+        Styles.styleButton(signUpButton)
     }
     /*
     // MARK: - Navigation

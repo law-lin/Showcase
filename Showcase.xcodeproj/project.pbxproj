@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		533C527324B0374400D300E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533C527224B0374400D300E9 /* Styles.swift */; };
+		533C527524B0415E00D300E9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533C527424B0415E00D300E9 /* InitialViewController.swift */; };
 		534FB92F24A3AC4600A11376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB92E24A3AC4600A11376 /* AppDelegate.swift */; };
 		534FB93124A3AC4600A11376 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534FB93024A3AC4600A11376 /* SceneDelegate.swift */; };
 		534FB93824A3AC4600A11376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534FB93624A3AC4600A11376 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		05C2B9BDB8E7D164E5B847EF /* Pods-Showcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Showcase.release.xcconfig"; path = "Target Support Files/Pods-Showcase/Pods-Showcase.release.xcconfig"; sourceTree = "<group>"; };
+		533C527224B0374400D300E9 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		533C527424B0415E00D300E9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		534FB92B24A3AC4600A11376 /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		534FB92E24A3AC4600A11376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		534FB93024A3AC4600A11376 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				539CBC8F24AA97FB003299EC /* PublicProfileViewController.swift */,
 				539CBC9124AAA3F3003299EC /* PublicCardCell.swift */,
 				539CBC9324AAB4BF003299EC /* Extensions.swift */,
+				533C527224B0374400D300E9 /* Styles.swift */,
+				533C527424B0415E00D300E9 /* InitialViewController.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -240,7 +246,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533C527524B0415E00D300E9 /* InitialViewController.swift in Sources */,
 				534FB95724A5C3A800A11376 /* Card.swift in Sources */,
+				533C527324B0374400D300E9 /* Styles.swift in Sources */,
 				534FB94724A3B48500A11376 /* LogInViewController.swift in Sources */,
 				534FB94524A3B47B00A11376 /* SignUpViewController.swift in Sources */,
 				534FB92F24A3AC4600A11376 /* AppDelegate.swift in Sources */,

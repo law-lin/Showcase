@@ -34,18 +34,19 @@ class PublicProfileViewController: UITableViewController {
             profilePictureView.loadImageUsingCache(urlString: profilePictureURL)
             
         }
-        loadDataFromDatabase()
-
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     override func viewWillAppear(_ animated: Bool){
         loadDataFromDatabase()
+        tableView.reloadData()
     }
-    
+
     func loadDataFromDatabase() {
         self.navigationItem.title = selectedUser?.username
         if let userID = selectedUser?.userID{
@@ -69,6 +70,7 @@ class PublicProfileViewController: UITableViewController {
                
             })
         }
+        
     }
         
     // MARK: - Table view data source

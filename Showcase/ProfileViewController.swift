@@ -23,9 +23,9 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var biographyTextView: UITextView!
-    @IBOutlet weak var profilePicture: UIButton!
-    
+    @IBOutlet weak var changeProfilePicture: UIButton!
     @IBOutlet weak var profilePictureView: UIImageView!
+    
     var cards = [Card]()
     
     let userID = Auth.auth().currentUser?.uid
@@ -34,21 +34,16 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     var imagePicker = UIImagePickerController()
     
+    var loading = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-        loadingIndicator.startAnimating();
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
-//        loadDataFromDatabase()
-        dismiss(animated: false, completion: nil)
-        tableView.reloadData()
+        showLoadingIndicator()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -61,27 +56,33 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         tableView.reloadData()
     }
     
-    func loadDataFromDatabase() {
-        
+    func showLoadingIndicator() {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
     
+    func loadDataFromDatabase() {
         ref.child("users").queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
-        if let dict = snapshot.children.allObjects as? [DataSnapshot]{
-            for result in dict {
-                let results = result.value as? [String : AnyObject]
-                if(result.key == self.userID){
-                    self.usernameTextField.text = results?["username"] as? String
-                    self.biographyTextView.text = results?["biography"] as? String
-                    
-                    if let profilePictureURL = results?["profilePictureURL"] as? String{
-                        print("Loading profile picture")
-                        print(profilePictureURL)
-                        self.profilePictureView?.loadImageUsingCache(urlString: profilePictureURL)
+            if let dict = snapshot.children.allObjects as? [DataSnapshot]{
+                for result in dict {
+                    let results = result.value as? [String : AnyObject]
+                    if(result.key == self.userID){
+                        self.usernameTextField.text = results?["username"] as? String
+                        self.biographyTextView.text = results?["biography"] as? String
                         
+                        if let profilePictureURL = results?["profilePictureURL"] as? String{
+                            print("Loading profile picture")
+                            print(profilePictureURL)
+                            self.profilePictureView?.loadImageUsingCache(urlString: profilePictureURL)
+                            }
+                        return
                     }
-                    return
                 }
-            }
-            
             }
         })
                 
@@ -99,10 +100,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                     card.cardImageURL = cardImageURL
                     self.cards.append(card)
                     self.tableView.reloadData()
+                    self.dismiss(animated: false, completion: nil)
                 }
+                
             }
         })
-        
+       
     }
         
     // MARK: - Table view data source
@@ -202,7 +205,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             biographyTextView.isEditable = true
             biographyTextView.layer.borderColor = UIColor.lightGray.cgColor
             biographyTextView.layer.borderWidth = 1
-            profilePicture.isEnabled = true
+            
+            changeProfilePicture.setTitle("Change Profile Picture", for: .normal)
+            changeProfilePicture.isEnabled = true
+            changeProfilePicture.layer.borderWidth = 2
+            changeProfilePicture.layer.borderColor = UIColor.black.cgColor
+            changeProfilePicture.tintColor = UIColor.black
         }
         else{
             editProfileButton.title = "Edit Profile"
@@ -212,12 +220,17 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             biographyTextView.layer.borderColor = nil
             biographyTextView.layer.borderWidth = 0
             
-            profilePicture.isEnabled = false
+            changeProfilePicture.setTitle("", for: .normal)
+            changeProfilePicture.isEnabled = false
+            changeProfilePicture.layer.borderWidth = 0
+            changeProfilePicture.layer.borderColor = nil
+            changeProfilePicture.tintColor = nil
+            
             let updateRef = self.ref.child("users/\(userID!)")
             let imgRef = self.storageRef.child("profilePictures/\(userID!)")
            
-            if profilePicture.imageView?.image != nil{
-                if let uploadData = profilePicture.imageView?.image!.pngData(){
+            if profilePictureView?.image != nil{
+                if let uploadData = profilePictureView.image!.pngData(){
                     imgRef.putData(uploadData, metadata: nil) { (metadata, error) in
                         if(error != nil){
                             print(error!)
@@ -256,7 +269,6 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profilePictureView.contentMode = .scaleAspectFit
             profilePictureView.image = selectedImage
-//            profilePicture.setImage(selectedImage, for: .normal)
         }
         dismiss(animated: true, completion: nil)
     }
