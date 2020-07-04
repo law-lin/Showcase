@@ -17,7 +17,7 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardTitle: UITextField!
-    @IBOutlet weak var cardDescription: UITextField!
+    @IBOutlet weak var cardDescription: UITextView!
     @IBOutlet weak var cardImage: UIImageView! = nil
     @IBOutlet weak var sgmtEditMode: UISegmentedControl!
     @IBOutlet weak var chooseImgBtn: UIButton!
@@ -28,23 +28,23 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var storageRef = Storage.storage().reference()
     
     @IBAction func changeEditMode(_ sender: Any){
-           let textFields: [UITextField] = [cardTitle, cardDescription]
-           if sgmtEditMode.selectedSegmentIndex == 0 {
-               for textField in textFields {
-                   textField.isEnabled = false
-                   textField.borderStyle = UITextField.BorderStyle.none
-               }
-               chooseImgBtn.isHidden = true
-           }
-           else if sgmtEditMode.selectedSegmentIndex == 1{
-               for textField in textFields {
-                   textField.isEnabled = true
-                   textField.borderStyle = UITextField.BorderStyle.roundedRect
-               }
+        if sgmtEditMode.selectedSegmentIndex == 0 {
+            cardTitle.isEnabled = false
+            cardTitle.borderStyle = UITextField.BorderStyle.none
+            cardDescription.isEditable = false
+            cardDescription.layer.borderColor = nil
+            cardDescription.layer.borderWidth = 0
+            chooseImgBtn.isHidden = true
+            
+        }
+        else if sgmtEditMode.selectedSegmentIndex == 1{
+            cardTitle.isEnabled = true
+            cardTitle.borderStyle = UITextField.BorderStyle.roundedRect
+            cardDescription.isEditable = true
+            cardDescription.layer.borderColor = UIColor.lightGray.cgColor
+            cardDescription.layer.borderWidth = 1
             chooseImgBtn.isHidden = false
-               navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
-               target: self,
-               action: #selector(self.saveCard))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveCard))
            }
        }
        

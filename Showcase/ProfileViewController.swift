@@ -46,7 +46,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         loadingIndicator.startAnimating();
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
-        loadDataFromDatabase()
+//        loadDataFromDatabase()
         dismiss(animated: false, completion: nil)
         tableView.reloadData()
         
@@ -152,17 +152,19 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let card = cards[indexPath.row]
+            ref.child("cards").child(userID!).child(card.cardID!).removeValue()
+            cards.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
