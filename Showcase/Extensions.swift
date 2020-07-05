@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/29/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -10,8 +11,10 @@ import UIKit
 
 let imgCache = NSCache<NSString, UIImage>()
 
+// MARK: - Any extensions created to better modularize the app
 extension UIImageView {
-
+    
+    // The function that loads the image by checking cache first, and if the image doesn't exist in cache, download it with the provided Firebase URL 
     func loadImageUsingCache(urlString: String){
         
         // Check cache for card image

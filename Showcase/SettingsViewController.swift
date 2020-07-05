@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/26/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -11,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+// MARK: - The controller that displays the available settings
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var privateModeSwitch: UISwitch!
@@ -35,20 +37,23 @@ class SettingsViewController: UIViewController {
         })
     }
 
+    // Turns private mode on or off
     @IBAction func setPrivateMode(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
         ref.child("users/\(userID!)").updateChildValues(["isPrivate": privateModeSwitch.isOn])
     }
+    
+    // Signs the current user out and returns to initial view screen (login and signup)
     @IBAction func signOutButtonTapped(_ sender: Any) {
         do{
             try auth.signOut()
             transitionToInitialView()
         } catch let error as NSError {
             print("Error signing out: %@", error)
-            
         }
     }
     
+    // Helper function to transition to initial view
     func transitionToInitialView(){
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: "InitialViewController")
         view.window?.rootViewController = initialViewController
@@ -62,5 +67,4 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

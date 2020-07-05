@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/26/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -11,6 +12,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
+// MARK: - The controller to show viewing/editing of a card
 class CardViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var currentCard: Card?
@@ -27,6 +29,9 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var dbRef = Database.database().reference()
     var storageRef = Storage.storage().reference()
     
+    // MARK: - Editing/saving functions
+    
+    // Change from view to edit or vice versa
     @IBAction func changeEditMode(_ sender: Any){
         if sgmtEditMode.selectedSegmentIndex == 0 {
             cardTitle.isEnabled = false
@@ -58,6 +63,7 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
+    // Function to set image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             cardImage.contentMode = .scaleAspectFit
@@ -66,9 +72,12 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         dismiss(animated: true, completion: nil)
     }
     
+    // Function to save card
     @objc func saveCard() {
         // save card in Firebase
         let userID = Auth.auth().currentUser?.uid
+        
+        // If there is no current card (new card)
         if currentCard == nil {
             currentCard = Card(cardTitle: self.cardTitle.text, cardDescription: self.cardDescription.text)
             let newRef = self.dbRef.child("cards/\(userID!)/").childByAutoId()
@@ -99,6 +108,7 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 newRef.setValue(["cardTitle": self.cardTitle.text!, "cardDescription": self.cardDescription.text!])
             }
         }
+        // If there exists a current card (editing and saving)
         else {
             let currentCardID : String = (currentCard?.cardID!)!
             let updateRef = self.dbRef.child("cards/\(userID!)/\(currentCardID)")
@@ -132,14 +142,13 @@ class CardViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         changeEditMode(self)
     }
         
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
      
         if currentCard != nil{
             cardTitle.text = currentCard?.cardTitle
             cardDescription.text = currentCard?.cardDescription
-            print(cardTitle.text!)
-            
             
             if let cardImageURL = currentCard?.cardImageURL{
                 cardImage.loadImageUsingCache(urlString: cardImageURL)

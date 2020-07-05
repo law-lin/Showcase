@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/28/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -10,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+// MARK: - The controller for the home view with all public profiles shown
 class HomeViewController: UITableViewController {
     
     var users = [User]()
@@ -33,6 +35,7 @@ class HomeViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Load data from Firebase Realtime Database
     func loadDataFromDatabase() {
         
         let userID = Auth.auth().currentUser?.uid
@@ -132,6 +135,4 @@ class HomeViewController: UITableViewController {
             taskController?.selectedUser = selectedUser
         }
     }
-    
-
 }

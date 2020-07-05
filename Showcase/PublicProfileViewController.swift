@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/26/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -10,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+// MARK: - The controller for a public profile
 class PublicProfileViewController: UITableViewController {
     
     @IBOutlet weak var usernameTextLabel: UILabel!
@@ -47,10 +49,13 @@ class PublicProfileViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    // MARK: - Load data from Firebase Realtime Database
     func loadDataFromDatabase() {
+        // Set top title to the selected user's username
         self.navigationItem.title = selectedUser?.username
         if let userID = selectedUser?.userID{
-     
+            
+            // Retreive data from Firebase
             ref.child("cards").child(userID).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
                 if let dict = snapshot.children.allObjects as? [DataSnapshot]{
                     self.cards.removeAll()
@@ -108,6 +113,20 @@ class PublicProfileViewController: UITableViewController {
 //        }
         return cell
     }
+    
+    // When user selects a card, display card title and card description
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = cards[indexPath.row]
+        let cardTitle = card.cardTitle
+        let cardDescription = card.cardDescription
+        let alertController = UIAlertController(title: "\(cardTitle!)", message: " \(cardDescription!)", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        alertController.addAction(actionCancel)
+        present(alertController, animated: true, completion: nil)
+    }
+   
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250.0;

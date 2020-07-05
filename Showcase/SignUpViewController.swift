@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/24/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -11,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+// MARK: - The controller for the sign up screen
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -27,6 +29,7 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // Initializes the sign up screen
     func initSignUp(){
         // Hide error label
         errorLabel.alpha = 0
@@ -46,7 +49,6 @@ class SignUpViewController: UIViewController {
     }
     */
 
-    
     @IBAction func signUpButtonTapped(_ sender: Any) {
         // Validate text fields
         let error = validate()
@@ -73,6 +75,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    // Checks if the required fields are filled out
     func validate() -> String? {
         if usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -90,11 +93,13 @@ class SignUpViewController: UIViewController {
         return nil
     }
     
+    // Displays an error
     func displayError(_ errorMsg:String){
         errorLabel.text = errorMsg
         errorLabel.alpha = 1
     }
     
+    // Segue from sign up screen to home screen
     func transitionToHome(){
         let tabBarController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
         view.window?.rootViewController = tabBarController

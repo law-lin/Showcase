@@ -3,15 +3,18 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 7/4/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
 import UIKit
 
+// MARK: - The initial view users see with login and signup options
 class InitialViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +22,6 @@ class InitialViewController: UIViewController {
         Styles.styleHollowButton(signupButton)
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -30,5 +32,4 @@ class InitialViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

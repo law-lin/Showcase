@@ -3,6 +3,7 @@
 //  Showcase
 //
 //  Created by Lawrence Lin on 6/26/20.
+//  SBU ID: 112801579
 //  Copyright © 2020 Lawrence Lin. All rights reserved.
 //
 
@@ -10,6 +11,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+
+// MARK: - The class to represent a card cell
 class CardCell: UITableViewCell {
     
     @IBOutlet weak var cardTitleLabel: UILabel!
@@ -17,8 +20,8 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var cardImageView: UIImageView!
 }
 
+// MARK: - The controller for the current user's profile
 class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
   
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -56,6 +59,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         tableView.reloadData()
     }
     
+    // Function to show "Please wait" with a spinner
     func showLoadingIndicator() {
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -66,6 +70,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Load data from Firebase Realtime Database
     func loadDataFromDatabase() {
         ref.child("users").queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
             if let dict = snapshot.children.allObjects as? [DataSnapshot]{
@@ -100,12 +105,11 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                     card.cardImageURL = cardImageURL
                     self.cards.append(card)
                     self.tableView.reloadData()
-                    self.dismiss(animated: false, completion: nil)
                 }
                 
             }
         })
-       
+        self.dismiss(animated: false, completion: nil)
     }
         
     // MARK: - Table view data source
@@ -176,13 +180,13 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     */
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+    
 
     // MARK: - Navigation
 
@@ -196,7 +200,9 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
     }
     
+    // MARK: - Editing the user's username, biography, or profile picture
     
+    // When the "Edit Profile" button is tapped, switch to edit mode.
     @IBAction func editProfileButtonTapped(_ sender: Any) {
         if(editProfileButton.title == "Edit Profile"){
             editProfileButton.title = "Save"
@@ -226,6 +232,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             changeProfilePicture.layer.borderColor = nil
             changeProfilePicture.tintColor = nil
             
+            
+            // Saving all updated info to Firebase Realtime Database
             let updateRef = self.ref.child("users/\(userID!)")
             let imgRef = self.storageRef.child("profilePictures/\(userID!)")
            
@@ -254,17 +262,18 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
     }
     
-    
+    // Change profile picture
     @IBAction func profilePictureTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = false
-                
-                present(imagePicker, animated: true, completion: nil)
-            }
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
     }
     
+    // Set profile picture
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profilePictureView.contentMode = .scaleAspectFit
@@ -272,8 +281,4 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
         dismiss(animated: true, completion: nil)
     }
-    
 }
-
-
-
