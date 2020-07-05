@@ -181,11 +181,11 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     */
 
     
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
+//    // Override to support conditional rearranging of the table view.
+//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the item to be re-orderable.
+//        return true
+//    }
     
 
     // MARK: - Navigation
@@ -206,8 +206,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     @IBAction func editProfileButtonTapped(_ sender: Any) {
         if(editProfileButton.title == "Edit Profile"){
             editProfileButton.title = "Save"
+            
             usernameTextField.isEnabled = true
             usernameTextField.borderStyle = UITextField.BorderStyle.roundedRect
+            
             biographyTextView.isEditable = true
             biographyTextView.layer.borderColor = UIColor.lightGray.cgColor
             biographyTextView.layer.borderWidth = 1
@@ -220,8 +222,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
         else{
             editProfileButton.title = "Edit Profile"
+            
             usernameTextField.isEnabled = false
             usernameTextField.borderStyle = UITextField.BorderStyle.none
+            
             biographyTextView.isEditable = false
             biographyTextView.layer.borderColor = nil
             biographyTextView.layer.borderWidth = 0
