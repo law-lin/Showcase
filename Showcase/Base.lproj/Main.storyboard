@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="008-l0-DmA">
-                                <rect key="frame" x="40" y="273" width="295" height="120"/>
+                                <rect key="frame" x="40" y="273.5" width="295" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jem-re-0yN">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
@@ -57,7 +57,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showcase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsk-nX-M8x">
-                                <rect key="frame" x="116" y="158" width="143" height="39"/>
+                                <rect key="frame" x="117" y="137" width="143" height="103"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,15 +71,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="008-l0-DmA" firstAttribute="top" secondItem="Nsk-nX-M8x" secondAttribute="bottom" constant="76" id="4V7-ga-ACG"/>
-                            <constraint firstItem="008-l0-DmA" firstAttribute="centerY" secondItem="1yt-TM-Vtl" secondAttribute="centerY" id="4h4-mM-VmM"/>
-                            <constraint firstItem="JNv-xg-gux" firstAttribute="centerX" secondItem="1yt-TM-Vtl" secondAttribute="centerX" id="EQ5-mt-Cd3"/>
-                            <constraint firstItem="JNv-xg-gux" firstAttribute="leading" secondItem="bJG-kg-4N1" secondAttribute="leading" constant="92" id="Jj6-To-3Mh"/>
-                            <constraint firstItem="Nsk-nX-M8x" firstAttribute="centerX" secondItem="008-l0-DmA" secondAttribute="centerX" id="Wcq-3m-rBi"/>
-                            <constraint firstItem="008-l0-DmA" firstAttribute="leading" secondItem="bJG-kg-4N1" secondAttribute="leading" constant="40" id="cpi-lQ-gnp"/>
-                            <constraint firstItem="bJG-kg-4N1" firstAttribute="bottom" secondItem="JNv-xg-gux" secondAttribute="bottom" constant="20" id="pCl-go-AwZ"/>
-                            <constraint firstItem="Nsk-nX-M8x" firstAttribute="top" secondItem="bJG-kg-4N1" secondAttribute="top" constant="114" id="wh7-jO-q1F"/>
-                            <constraint firstItem="008-l0-DmA" firstAttribute="centerX" secondItem="JNv-xg-gux" secondAttribute="centerX" id="ymV-bA-15s"/>
+                            <constraint firstItem="008-l0-DmA" firstAttribute="top" secondItem="Nsk-nX-M8x" secondAttribute="bottom" constant="33.5" id="Jpk-PR-U6J"/>
+                            <constraint firstItem="008-l0-DmA" firstAttribute="centerY" secondItem="1yt-TM-Vtl" secondAttribute="centerY" id="LAz-dg-vnl"/>
+                            <constraint firstItem="bJG-kg-4N1" firstAttribute="bottom" secondItem="JNv-xg-gux" secondAttribute="bottom" constant="20" id="LuO-E8-ADg"/>
+                            <constraint firstItem="Nsk-nX-M8x" firstAttribute="top" secondItem="bJG-kg-4N1" secondAttribute="top" constant="93" id="R5e-C0-Fxu"/>
+                            <constraint firstItem="008-l0-DmA" firstAttribute="leading" secondItem="bJG-kg-4N1" secondAttribute="leading" constant="40" id="RVm-9P-Mrz"/>
+                            <constraint firstItem="Nsk-nX-M8x" firstAttribute="leading" secondItem="bJG-kg-4N1" secondAttribute="leading" constant="117" id="dsY-DC-Q7l"/>
+                            <constraint firstItem="JNv-xg-gux" firstAttribute="centerX" secondItem="1yt-TM-Vtl" secondAttribute="centerX" id="nNl-dC-a6U"/>
+                            <constraint firstItem="008-l0-DmA" firstAttribute="centerX" secondItem="JNv-xg-gux" secondAttribute="centerX" id="pXe-ZX-HQo"/>
+                            <constraint firstItem="JNv-xg-gux" firstAttribute="leading" secondItem="bJG-kg-4N1" secondAttribute="leading" constant="92" id="xQS-Iu-Ghs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bJG-kg-4N1"/>
                     </view>
@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gh-kN-tse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424.63768115942031" y="-11.383928571428571"/>
+            <point key="canvasLocation" x="423.19999999999999" y="-12.143928035982009"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="N0a-dE-k6d">
