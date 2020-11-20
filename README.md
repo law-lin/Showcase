@@ -8,9 +8,11 @@ Showcase what YOU want to show to the world. Show off any projects, extracurricu
 
 ## App Preview
 
-<img src="images/newcardscreen.PNG" height="300"/>
-<img src="images/profilescreen.PNG" height="300"/>
-<img src="images/tapcardalert.PNG" height="300"/>
+<p>
+  <img src="images/newcardscreen.PNG" height="300"/>
+  <img src="images/profilescreen.PNG" height="300"/>
+  <img src="images/tapcardalert.PNG" height="300"/>
+</p>
 
 ## How to Use
 
