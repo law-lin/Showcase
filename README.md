@@ -8,7 +8,7 @@ Showcase what YOU want to show to the world. Show off any projects, extracurricu
 
 ## App Preview
 
-![Tap Card Alert](/images/tapcardalert.png)
+![Tap Card Alert](/images/tapcardalert.PNG)
 
 ## How to Use
 
